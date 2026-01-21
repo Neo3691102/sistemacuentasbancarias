@@ -11,6 +11,13 @@
         <div class="flex justify-content-center flex-wrap car-container yellow-container">
             <h3>Sistema de cuentas bancarias</h3>
         </div>
+
+        <div class="card">
+            <p:dataTable value="#{IndexController.cuentas}" var="cuenta">
+                <div>Valores de la tabla:</div>
+                <h:outputText value="#{cuenta.nombre}"/>
+            </p:dataTable>
+        </div>
     </div>
 </h:body>
 </h:html>
