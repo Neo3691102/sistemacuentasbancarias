@@ -11,12 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Component
-@Data
 @ViewScoped
-public class IndexController {
+public class IndexController implements Serializable {
 
     @Autowired
     CuentaServicio cuentaServicio;
@@ -32,5 +32,13 @@ public class IndexController {
     public void cargarDatos(){
         this.cuentas = cuentaServicio.listarcuentas();
         cuentas.forEach((cuenta) -> logger.info(cuenta.toString()));
+    }
+
+    public List<Cuenta> getCuentas() {
+        return cuentas;
+    }
+
+    public void setCuentas(List<Cuenta> cuentas) {
+        this.cuentas = cuentas;
     }
 }

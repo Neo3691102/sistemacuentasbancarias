@@ -10,18 +10,50 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Data //con esta anotacion se generan getter y setter de forma automatica
+
 @NoArgsConstructor //agrega constructor vacio
 @AllArgsConstructor
 @ToString
 public class Cuenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer idCuenta;
+    private Integer idCuenta;
 
-    String nombre;
+    private String nombre;
 
-    String tipoCuenta;
+    private String tipoCuenta;
 
-    Double saldo;
+    private Double saldo;
+
+    public Integer getIdCuenta() {
+        return idCuenta;
+    }
+
+    public void setIdCuenta(Integer idCuenta) {
+        this.idCuenta = idCuenta;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getTipoCuenta() {
+        return tipoCuenta;
+    }
+
+    public void setTipoCuenta(String tipoCuenta) {
+        this.tipoCuenta = tipoCuenta;
+    }
+
+    public Double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(Double saldo) {
+        this.saldo = saldo;
+    }
 }
