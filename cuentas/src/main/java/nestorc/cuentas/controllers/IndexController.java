@@ -1,10 +1,13 @@
 package nestorc.cuentas.controllers;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import lombok.Data;
 import nestorc.cuentas.modelo.Cuenta;
 import nestorc.cuentas.servicio.CuentaServicio;
+import org.primefaces.PrimeFaces;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +41,20 @@ public class IndexController implements Serializable {
 
     public void agregarCuenta(){
         this.cuentaSeleccionada = new Cuenta();
+    }
+
+    public void guardarCuenta(){
+        logger.info("Cuenta a guardar: " + this.cuentaSeleccionada);
+        if(this.cuentaSeleccionada.getIdCuenta() == null){
+            this.cuentaServicio.guardarCuenta(this.cuentaSeleccionada);
+            this.cuentas.add(this.cuentaSeleccionada);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cuenta agregada"));
+        }
+        //ocultamos la ventana
+        PrimeFaces.current().executeScript("PF('ventanaModalCuenta').hide()");
+        //actualizamos la tabla
+        PrimeFaces.current().ajax().update("forma-cuentas:mensajes",
+                "forma-cuentas:cuentas-tabla");
     }
 
     public List<Cuenta> getCuentas() {
