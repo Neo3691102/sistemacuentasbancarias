@@ -22,6 +22,8 @@ public class IndexController implements Serializable {
     CuentaServicio cuentaServicio;
     private List<Cuenta> cuentas;
 
+    private Cuenta cuentaSeleccionada;
+
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @PostConstruct
@@ -34,6 +36,10 @@ public class IndexController implements Serializable {
         cuentas.forEach((cuenta) -> logger.info(cuenta.toString()));
     }
 
+    public void agregarCuenta(){
+        this.cuentaSeleccionada = new Cuenta();
+    }
+
     public List<Cuenta> getCuentas() {
         return cuentas;
     }
@@ -41,4 +47,16 @@ public class IndexController implements Serializable {
     public void setCuentas(List<Cuenta> cuentas) {
         this.cuentas = cuentas;
     }
+
+    //getter y setter cuenta seleccionada
+
+    public Cuenta getCuentaSeleccionada() {
+        return cuentaSeleccionada;
+    }
+
+    public void setCuentaSeleccionada(Cuenta cuentaSeleccionada) {
+        this.cuentaSeleccionada = cuentaSeleccionada;
+    }
+
+
 }
