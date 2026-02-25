@@ -123,26 +123,28 @@
 
                 </f:facet>
             </p:dialog>
+
+            <p:confirmDialog widgetVar="eliminarCuentaVentana"
+                             showEffect="fade" width="300"
+                             message="Eliminar la cuenta?"
+                             header="Confirmar" severuty="warn">
+                <p:commandButton value="Si" icon="pi pi-check"
+                                 actionListener="#{indexController.eliminarCuenta}"
+                                 process="@this"
+                                 oncomplete="PF('eliminarCuentaVentana').hide()" />
+                <p:commandButton value="No" type="button"
+                                 styleClass="ui-button-secondary"
+                                 icon="pi pi-times"
+                                 onclick="PF('eliminarCuentaVentana').hide()" />
+            </p:confirmDialog>
         </h:form>
 
-        <h:form id="forma-modal">
-            <p:dialog header="Detalles Cuenta" showEffect="fade">
 
-                <p:confirmDialog widgetVar="eliminarCuentaVentana"
-                                 showEffect="fade" width="300"
-                                 message="Eliminar la cuenta?"
-                                 header="Confirmar" severuty="warn">
-                    <p:commandButton value="Si" icon="pi pi-check"
-                                     actionListener="#{indexController.eliminarCuenta}"
-                                     process="@this"
-                                     oncomplete="PF('eliminarCuentaVentana').hide()" />
-                    <p:commandButton value="No" type="button"
-                                     styleClass="ui-button-secondary"
-                                     icon="pi pi-times"
-                                     onclick="PF('eliminarCuentaVentana').hide()" />
-                </p:confirmDialog>
-            </p:dialog>
-        </h:form>
+
+
+
+
+
 
     </div>
 </h:body>
