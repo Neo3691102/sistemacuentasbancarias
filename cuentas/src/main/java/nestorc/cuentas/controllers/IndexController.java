@@ -49,6 +49,9 @@ public class IndexController implements Serializable {
             this.cuentaServicio.guardarCuenta(this.cuentaSeleccionada);
             this.cuentas.add(this.cuentaSeleccionada);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cuenta agregada"));
+        }else{ //Modificar
+            this.cuentaServicio.guardarCuenta(this.cuentaSeleccionada);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cuenta actualizada"));
         }
         //ocultamos la ventana
         PrimeFaces.current().executeScript("PF('ventanaModalCuenta').hide()");
