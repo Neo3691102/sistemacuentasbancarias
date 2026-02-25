@@ -58,6 +58,19 @@ public class IndexController implements Serializable {
         //actualizamos la tabla
         PrimeFaces.current().ajax().update("forma-cuentas:mensajes",
                 "forma-cuentas:cuentas-tabla");
+        //Reset
+        this.cuentaSeleccionada = null;
+    }
+
+    public void eliminarCuenta(){
+        logger.info("Cuenta a aliminar:" + this.cuentaSeleccionada);
+        this.cuentaServicio.eliminarCuenta(cuentaSeleccionada);
+        //Eliminar el registro de la lista de cuentas
+        this.cuentas.remove(this.cuentaSeleccionada);
+        //Reset del objeto seleccionado de la tabla
+        this.cuentaSeleccionada = null;
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cuenta eliminada"));
+        PrimeFaces.current().ajax().update("forma-cuentas:mensajes", "forma-cuentas:cuenta-tabla");
     }
 
     public List<Cuenta> getCuentas() {

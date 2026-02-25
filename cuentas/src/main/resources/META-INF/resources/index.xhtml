@@ -65,6 +65,19 @@
                             <p:resetInput target=":forma-modal:cuenta-ventana" />
                         </p:commandButton>
                     </p:column>
+
+                    <p:column>
+                        <p:commandButton value="Eliminar" icon="pi pi-trash"
+                                         oncomplete="PF('eliminarCuentaVentana').show()"
+                                         process="@this"
+                                         class="ui-button-danger">
+                            <f:setPropertyActionListener
+                                    target="#{indexController.cuentaSeleccionada}"
+                                    value="#{cuenta}" />
+                            <p:resetInput target=":forma-modal:cuenta-ventana"
+                            value="#{cuenta}"/>
+                        </p:commandButton>
+                    </p:column>
                 </p:dataTable>
             </div>
         </h:form>
@@ -109,6 +122,25 @@
 
 
                 </f:facet>
+            </p:dialog>
+        </h:form>
+
+        <h:form id="forma-modal">
+            <p:dialog header="Detalles Cuenta" showEffect="fade">
+
+                <p:confirmDialog widgetVar="eliminarCuentaVentana"
+                                 showEffect="fade" width="300"
+                                 message="Eliminar la cuenta?"
+                                 header="Confirmar" severuty="warn">
+                    <p:commandButton value="Si" icon="pi pi-check"
+                                     actionListener="#{indexController.eliminarCuenta}"
+                                     process="@this"
+                                     oncomplete="PF('eliminarCuentaVentana').hide()" />
+                    <p:commandButton value="No" type="button"
+                                     styleClass="ui-button-secondary"
+                                     icon="pi pi-times"
+                                     onclick="PF('eliminarCuentaVentana').hide()" />
+                </p:confirmDialog>
             </p:dialog>
         </h:form>
 
